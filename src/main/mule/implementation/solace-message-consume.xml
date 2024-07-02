@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:solace="http://www.mulesoft.org/schema/mule/solace" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/solace http://www.mulesoft.org/schema/mule/solace/current/mule-solace.xsd">
+	<flow name="solace-message-consumeFlow" doc:id="07af8541-42a2-4cf0-a0fa-427e3360c325" >
+		<solace:queue-listener address="${solace.queueName}" doc:name="Guaranteed Endpoint Listener" doc:id="60c89599-468f-4979-9e2a-f596ad71b6a8" config-ref="solace-pubsub-connector-config" ackMode="MANUAL_CLIENT"/>
+		<logger level="INFO" doc:name="Logger - Message subscribed" doc:id="b358c370-cb6a-4c45-85c3-3f3b0fdc4ba6" message="#['Message subscribed']"/>
+		<solace:ack doc:name="Manual Ack" doc:id="801bea7e-7a19-4077-a9cb-eb0609f6eb62" config-ref="solace-pubsub-connector-config"/>
+	</flow>
+</mule>

@@ -1,0 +1,27 @@
+logging:
+  category:
+    categoryName: "test"
+    
+interfaceName: project-template
+
+#http configuration
+http:
+  host: "0.0.0.0"
+  port: "8082" 
+  
+#https configuration  
+https:
+  host: "0.0.0.0"
+  port: "8081" 
+
+env: dev
+region: eu
+
+#solace configuration
+solace:
+  userName: placeholder
+  password: placeholder
+  msgVPN: test
+  brokerHost: tcps://placeholder.messaging.solace.cloud:55443
+  topic: demo-topic
+  queueName: demo-queue

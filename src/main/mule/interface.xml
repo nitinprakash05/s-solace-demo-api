@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd ">
+	<flow name="interfaceFlow" doc:id="da254155-8f55-42e6-a259-bc2fa1ba67d9" >
+		<http:listener doc:name="Listener" doc:id="bde75285-5091-4377-8e77-9ff36bf9ff0d" config-ref="http-listener-config" path="/publishData"/>
+		<ee:transform doc:name="vars:topicName,topicPayload" doc:id="680c07ac-a4bc-4798-bbc6-c50e70b251da" >
+			<ee:message >
+			</ee:message>
+			<ee:variables >
+				<ee:set-variable variableName="topicPayload" ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"message": "test"
+}]]></ee:set-variable>
+				<ee:set-variable variableName="topicName" ><![CDATA[%dw 2.0
+output application/java
+---
+p('solace.topic')]]></ee:set-variable>
+			</ee:variables>
+		</ee:transform>
+		<flow-ref doc:name="solace-message-publish-sub-flow" doc:id="1d93db90-f054-4307-9dca-6e91b54779ed" name="solace-message-publish-sub-flow"/>
+	</flow>
+</mule>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:solace="http://www.mulesoft.org/schema/mule/solace" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/solace http://www.mulesoft.org/schema/mule/solace/current/mule-solace.xsd">
+	<http:listener-config name="http-listener-config" doc:name="HTTP Listener config" doc:id="e2b4e6cf-abe3-47b6-8aa8-5be92930539e" >
+		<http:listener-connection host="0.0.0.0" port="${http.port}" />
+	</http:listener-config>
+	<configuration-properties doc:name="Configuration properties" doc:id="4c26e6c7-5058-4197-8230-feabc8fe2d29" file="config/common.yaml" />
+	<configuration-properties doc:name="Configuration properties" doc:id="60a8ceff-f8d7-4009-b653-63ea1642912a" file="config/${region}/${mule.env}.yaml" />
+	<solace:config name="solace-pubsub-connector-config" doc:name="Solace PubSub+ Connector Config" doc:id="c856b068-7cd8-4a5a-ab8d-72c0e21f37ce" provisionedEndpointAccessType="NON_EXCLUSIVE">
+		<solace:connection clientUserName="${solace.userName}" password="${solace.password}" msgVPN="${solace.msgVPN}" brokerHost="${solace.brokerHost}" >
+			<solace:ack-cache-time-out />
+		</solace:connection>
+	</solace:config>
+</mule>

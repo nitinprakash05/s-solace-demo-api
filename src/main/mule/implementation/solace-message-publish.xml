@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:solace="http://www.mulesoft.org/schema/mule/solace" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/solace http://www.mulesoft.org/schema/mule/solace/current/mule-solace.xsd">
+	
+	<sub-flow name="solace-message-publish-sub-flow" doc:id="12f18c62-aed7-4b3c-af6a-3bf76b3b8787" >
+		<solace:publish address="#[vars.topicName]" doc:name="Publish message" doc:id="1e52ab9f-7297-41da-bd49-85719c4ecc48" config-ref="solace-pubsub-connector-config" delivery-mode="PERSISTENT">
+			<solace:message >
+				<solace:additional-message-properties />
+				<solace:body ><![CDATA[#[vars.topicPayload]]]></solace:body>
+			</solace:message>
+		</solace:publish>
+		<logger level="INFO" doc:name="Logger-message published" doc:id="13edf193-3de7-4172-9c38-d064578bfc89" message="#['Message published to topic']"/>
+	</sub-flow>
+</mule>
