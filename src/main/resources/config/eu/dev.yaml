@@ -19,9 +19,9 @@ region: eu
 
 #solace configuration
 solace:
-  userName: global-user
-  password: test123
+  userName: placeholder
+  password: placeholder
   msgVPN: test
-  brokerHost: tcps://mr-connection-vcqjn91m0op.messaging.solace.cloud:55443
+  brokerHost: placeholder
   topic: demo-topic
   queueName: demo-queue
