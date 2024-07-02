@@ -8,7 +8,7 @@ http://www.mulesoft.org/schema/mule/solace http://www.mulesoft.org/schema/mule/s
 	<sub-flow name="solace-message-publish-sub-flow" doc:id="12f18c62-aed7-4b3c-af6a-3bf76b3b8787" >
 		<solace:publish address="#[vars.topicName]" doc:name="Publish message" doc:id="1e52ab9f-7297-41da-bd49-85719c4ecc48" config-ref="solace-pubsub-connector-config" delivery-mode="PERSISTENT">
 			<solace:message >
-				<solace:additional-message-properties />
+				<solace:additional-message-properties userPropertiesMap="#[vars.userProperties]"/>
 				<solace:body ><![CDATA[#[vars.topicPayload]]]></solace:body>
 			</solace:message>
 		</solace:publish>

@@ -16,6 +16,12 @@ output application/json
 output application/java
 ---
 p('solace.topic')]]></ee:set-variable>
+				<ee:set-variable variableName="userProperties" ><![CDATA[%dw 2.0
+output application/java
+---
+{
+	"userProperties": "test"
+}]]></ee:set-variable>
 			</ee:variables>
 		</ee:transform>
 		<flow-ref doc:name="solace-message-publish-sub-flow" doc:id="1d93db90-f054-4307-9dca-6e91b54779ed" name="solace-message-publish-sub-flow"/>
